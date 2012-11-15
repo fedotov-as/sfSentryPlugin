@@ -57,8 +57,8 @@ class sfRavenLogger extends sfLogger
   }
 
   /**
-   * Get cleint
-   * 
+   * Get client
+   *
    *  @return sfRavenClient
    */
   protected function getClient()
