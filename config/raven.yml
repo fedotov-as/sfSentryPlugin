@@ -1,0 +1,15 @@
+all:
+  # Sentry connection URL
+  dsn: ~
+
+  # Logger
+  logger:
+    class: sfRavenLogger
+    param:
+      level: err
+
+dev:
+  logger: ~
+
+test:
+  logger: ~

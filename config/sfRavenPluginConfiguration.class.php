@@ -29,8 +29,14 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
 
       $errorHandler = new Raven_ErrorHandler($client);
       $errorHandler->registerExceptionHandler();
-      $errorHandler->registerErrorHandler(true, E_ERROR | E_PARSE | E_NOTICE | E_STRICT);
+      $errorHandler->registerErrorHandler(true, E_ALL | E_STRICT);
       $errorHandler->registerShutdownFunction(500);
+
+      if ($loggerClass = sfConfig::get('raven_logger_class', 'sfRavenLogger'))
+      {
+        $loggerOptions = sfConfig::get('raven_logger_params', array('level' => 'err'));
+        new $loggerClass($this->dispatcher, $loggerOptions, $client);
+      }
     }
   }
 }

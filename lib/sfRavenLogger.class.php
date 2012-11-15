@@ -11,6 +11,18 @@ class sfRavenLogger extends sfLogger
   private $client;
 
   /**
+   * Class constructor.
+   *
+   * @see initialize()
+   */
+  public function __construct(sfEventDispatcher $dispatcher, $options = array(), Raven_Client $client = null)
+  {
+    $this->client = $client;
+
+    parent::__construct($dispatcher, $options);
+  }
+
+  /**
    * Logs a message.
    *
    * @param string $message Message
