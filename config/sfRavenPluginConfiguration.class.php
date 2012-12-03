@@ -4,6 +4,8 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
 {
   const CONFIG_PATH = 'config/raven.yml';
 
+  protected $errorHandler;
+
   /**
    * Initializes the plugin.
    *
@@ -27,16 +29,17 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
 
       $client = new sfRavenClient(sfConfig::get('raven_dsn'));
 
-      $errorHandler = new Raven_ErrorHandler($client);
-      $errorHandler->registerExceptionHandler();
-      $errorHandler->registerErrorHandler(true, E_ALL | E_STRICT);
-      $errorHandler->registerShutdownFunction(500);
+      $this->errorHandler = new Raven_ErrorHandler($client);
+      $this->errorHandler->registerExceptionHandler();
+      $this->errorHandler->registerErrorHandler(true, E_ALL | E_STRICT);
+      $this->errorHandler->registerShutdownFunction(500);
 
-      if ($loggerClass = sfConfig::get('raven_logger_class', 'sfRavenLogger'))
-      {
-        $loggerOptions = sfConfig::get('raven_logger_params', array('level' => 'err'));
-        new $loggerClass($this->dispatcher, $loggerOptions, $client);
-      }
+      $this->dispatcher->connect('application.throw_exception', array($this, 'listenToExceptions'));
     }
+  }
+
+  public function listenToExceptions($event)
+  {
+    $this->errorHandler->handleException($event->getSubject());
   }
 }
