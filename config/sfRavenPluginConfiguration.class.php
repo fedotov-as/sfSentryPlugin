@@ -40,12 +40,6 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
 
   public function listenToExceptions($event)
   {
-    if ($event->getSubject() instanceof sfStopException)
-    {
-      // Not really an error
-      return;
-    }
-
     $this->errorHandler->handleException($event->getSubject());
   }
 }
