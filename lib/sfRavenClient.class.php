@@ -2,6 +2,16 @@
 
 class sfRavenClient extends Raven_Client
 {
+  public function captureException($exception, $culprit=null, $logger=null)
+  {
+    if ($exception instanceof sfStopException)
+    {
+      return;
+    }
+
+    parent::captureException($exception, $culprit, $logger);
+  }
+
   protected function get_user_data()
   {
     if (!sfContext::hasInstance())
