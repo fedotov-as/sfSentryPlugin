@@ -27,7 +27,9 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
         return;
       }
 
-      $client = new sfRavenClient(sfConfig::get('raven_dsn'));
+      $client = new sfRavenClient(sfConfig::get('raven_dsn'), array(
+        'exclude' => array('sfStopException'),
+      ));
 
       $this->errorHandler = new Raven_ErrorHandler($client);
       $this->errorHandler->registerExceptionHandler();
