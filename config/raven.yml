@@ -1,3 +1,5 @@
 all:
-  # Sentry connection URL
-  dsn: ~
+  client:
+    # Sentry connection URL
+    dsn: ~
+    options: []

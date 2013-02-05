@@ -22,14 +22,24 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
 
       require $configCache->checkConfig(self::CONFIG_PATH);
 
-      if (!sfConfig::get('raven_dsn'))
+      $dsn = sfConfig::get('raven_client_dsn', sfConfig::get('raven_dsn')); // To keep BC
+      if (!$dsn)
       {
         return;
       }
 
-      $client = new sfRavenClient(sfConfig::get('raven_dsn'), array(
-        'exclude' => array('sfStopException'),
-      ));
+      $options = sfConfig::get('raven_client_options', array());
+      if (!isset($options['exclude']))
+      {
+        $options['exclude'] = array();
+      }
+
+      if (!in_array('sfStopException', $options['exclude']))
+      {
+        $options['exclude'][] = 'sfStopException';
+      }
+
+      $client = new sfRavenClient($dsn, $options);
 
       $this->errorHandler = new Raven_ErrorHandler($client);
       $this->errorHandler->registerExceptionHandler();
