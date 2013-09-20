@@ -9,10 +9,15 @@
             "name": "Jerome Macias",
             "email": "jmacias@groupe-exp.com",
             "role": "Developer"
+        },
+        {
+            "name": "Jerome Tamarelle",
+            "email": "jtamarelle@groupe-exp.com",
+            "role": "Developer"
         }
     ],
     "require": {
         "composer/installers": "*",
-        "raven/raven": "dev-master"
+        "raven/raven": "0.7.*"
     }
 }

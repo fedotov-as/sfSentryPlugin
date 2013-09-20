@@ -2,4 +2,7 @@ all:
   client:
     # Sentry connection URL
     dsn: ~
-    options: []
+    options:
+      exclude:
+        - sfStopException
+      auto_log_stacks: true
