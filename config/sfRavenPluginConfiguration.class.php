@@ -15,12 +15,7 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
   {
     if ($this->configuration instanceof sfApplicationConfiguration)
     {
-      $configCache = $this->configuration->getConfigCache();
-      $configCache->registerConfigHandler(self::CONFIG_PATH, 'sfDefineEnvironmentConfigHandler', array(
-        'prefix' => 'raven_',
-      ));
-
-      require $configCache->checkConfig(self::CONFIG_PATH);
+      require $this->configuration->getConfigCache()->checkConfig(self::CONFIG_PATH);
 
       $dsn     = sfConfig::get('raven_client_dsn', sfConfig::get('raven_dsn')); // Keep BC
       $options = sfConfig::get('raven_client_options', array());

@@ -1,0 +1,4 @@
+config/raven.yml:
+  class:    sfDefineEnvironmentConfigHandler
+  param:
+    prefix: raven_
