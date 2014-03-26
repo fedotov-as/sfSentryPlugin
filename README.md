@@ -16,24 +16,28 @@ With composer
 
 Add to your project configuration:
 
-    # config/ProjectConfiguration.php
+````php
+# config/ProjectConfiguration.php
 
-    class ProjectConfiguration extends sfProjectConfiguration
-    {
-      public function setup()
-      {
-        $this->enablePlugins(array(
-          // ...
+class ProjectConfiguration extends sfProjectConfiguration
+{
+  public function setup()
+  {
+    $this->enablePlugins(array(
+      // ...
 
-          'sfRavenPlugin',
-        ));
-      }
-    }
+      'sfRavenPlugin',
+    ));
+  }
+}
+````
 
 Configure the Raven client. The DSN can be found in the getsentry interface.
 
-    # app/raven.yml
+````yaml
+# config/raven.yml
 
-    all:
-      client:
-        dsn: udp://11111111111111111111111111111111:22222222222222222222222222222222@localhost:9001/1
+all:
+  client:
+    dsn: udp://11111111111111111111111111111111:22222222222222222222222222222222@localhost:9001/1
+````
