@@ -19,7 +19,7 @@ class sfRavenClient extends Raven_Client
     }
 
     return array(
-      'sentry.interfaces.User' => array(
+      'user' => array(
         'is_authenticated' => $authenticated,
         'username'         => $username,
       )
@@ -35,30 +35,30 @@ class sfRavenClient extends Raven_Client
 
     $context = sfContext::getInstance();
 
+    if ($conf = $context->getConfiguration())
+    {
+      $this->setEnvironment($conf->getEnvironment());
+    }
+
     $extra = array(
       'sf_module_name' => $context->getModuleName(),
       'sf_action_name' => $context->getActionName(),
     );
 
-    if ($conf = $context->getConfiguration())
-    {
-      $extra['sf_environment'] = $conf->getEnvironment();
-    }
-
     $user = $context->getUser();
     if ($user && ($user instanceof sfGuardSecurityUser) && $guardUser = $user->getGuardUser())
     {
       $credentials = '';
-      if ($user->isAnonymous())
+      if (!$user->isAnonymous())
       {
-      }
-      elseif ($user->isSuperAdmin())
-      {
-        $credentials = 'Super admin';
-      }
-      elseif (method_exists($guardUser, 'getAllPermissions'))
-      {
-        $credentials = implode(', ' , $guardUser->getAllPermissions());
+        if ($user->isSuperAdmin())
+        {
+          $credentials = 'Super admin';
+        }
+        elseif (method_exists($guardUser, 'getAllPermissions'))
+        {
+          $credentials = implode(', ' , $guardUser->getAllPermissions());
+        }
       }
 
       $extra['sf_user_credentials'] = $credentials;
