@@ -1,7 +1,7 @@
-sfRavenPlugin
+sfSentryPlugin
 =============
 
-Enable remote logging to [Sentry](https://getsentry.com/welcome/) into symfony1 applications.
+Enable remote logging to [Sentry](https://getsentry.com/welcome/) into Symfony1 applications.
 
 * Fatal errors (syntax error, out of memory)
 * Warnings (undefined variable, headers sent, deprecated)
@@ -12,7 +12,7 @@ Install
 
 With composer
 
-    composer require lexpress/sf-raven-plugin
+    composer require mezonix/sf-sentry-plugin
 
 Add to your project configuration:
 
@@ -26,18 +26,18 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins(array(
       // ...
 
-      'sfRavenPlugin',
+      'sfSentryPlugin',
     ));
   }
 }
 ````
 
-Configure the Raven client. The DSN can be found in the getsentry interface.
+Configure the Sentry client. The DSN can be found in the GetSentry interface.
 
 ````yaml
 # config/sentry.yml
 
 all:
   client:
-    dsn: udp://11111111111111111111111111111111:22222222222222222222222222222222@localhost:9001/1
+    dsn: http://public@sentry.example.com:9000/[PROJECT_ID]
 ````
