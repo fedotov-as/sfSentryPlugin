@@ -25,7 +25,6 @@ class ProjectConfiguration extends sfProjectConfiguration
   {
     $this->enablePlugins(array(
       // ...
-
       'sfSentryPlugin',
     ));
   }
@@ -40,4 +39,15 @@ Configure the Sentry client. The DSN can be found in the GetSentry interface.
 all:
   client:
     dsn: http://public@sentry.example.com:9000/[PROJECT_ID]
+    options:
+      release: ~
+      exclude:
+        - sfStopException
+      auto_log_stacks: true
 ````
+
+ * `dsn` - Sentry connection URL.
+ * `options/release` - Release version or tag name.
+ * `options/exclude` - List of exception classes that are ignored.
+ * `options/auto_log_stacks` -  Generates a backtrace. See [debug-backtrace](https://php.net/manual/en/function.debug-backtrace.php).
+ 
