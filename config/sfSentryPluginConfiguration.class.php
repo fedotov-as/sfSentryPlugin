@@ -38,9 +38,9 @@ class sfSentryPluginConfiguration extends sfPluginConfiguration
 
     /**
      * Listener to exceptions
-     * @param $event
+     * @param sfEvent $event
      */
-    public function listenToExceptions($event)
+    public function listenToExceptions(sfEvent $event)
     {
         $this->errorHandler->handleException($event->getSubject());
     }
