@@ -1,5 +1,5 @@
 {
-    "name": "lexpress/sf-raven-plugin",
+    "name": "mezonix/sf-sentry-plugin",
     "description": "Symfony plugin for Raven PHP client for Sentry",
     "keywords": ["symfony1", "raven", "sentry"],
     "type": "symfony1-plugin",
