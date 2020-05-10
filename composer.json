@@ -27,6 +27,6 @@
   ],
   "require": {
     "composer/installers": "^1.9",
-    "sentry/sentry": "~1.11.0"
+    "sentry/sentry": "^1.11"
   }
 }
