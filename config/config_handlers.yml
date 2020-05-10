@@ -1,4 +1,4 @@
-config/raven.yml:
+config/sentry.yml:
   class:    sfDefineEnvironmentConfigHandler
   param:
-    prefix: raven_
+    prefix: sentry_

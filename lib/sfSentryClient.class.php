@@ -1,6 +1,6 @@
 <?php
 
-class sfRavenClient extends Raven_Client
+class sfSentryClient extends Raven_Client
 {
   protected function get_user_data()
   {

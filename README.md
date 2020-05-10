@@ -35,7 +35,7 @@ class ProjectConfiguration extends sfProjectConfiguration
 Configure the Raven client. The DSN can be found in the getsentry interface.
 
 ````yaml
-# config/raven.yml
+# config/sentry.yml
 
 all:
   client:
