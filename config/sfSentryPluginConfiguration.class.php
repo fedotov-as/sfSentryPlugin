@@ -1,8 +1,8 @@
 <?php
 
-class sfRavenPluginConfiguration extends sfPluginConfiguration
+class sfSentryPluginConfiguration extends sfPluginConfiguration
 {
-  const CONFIG_PATH = 'config/raven.yml';
+  const CONFIG_PATH = 'config/sentry.yml';
 
   protected $errorHandler;
 
@@ -17,14 +17,14 @@ class sfRavenPluginConfiguration extends sfPluginConfiguration
     {
       require $this->configuration->getConfigCache()->checkConfig(self::CONFIG_PATH);
 
-      $dsn     = sfConfig::get('raven_client_dsn', sfConfig::get('raven_dsn')); // Keep BC
-      $options = sfConfig::get('raven_client_options', array());
+      $dsn     = sfConfig::get('sentry_client_dsn', sfConfig::get('sentry_dsn')); // Keep BC
+      $options = sfConfig::get('sentry_client_options', array());
       if (!$dsn)
       {
         return;
       }
 
-      $client = new sfRavenClient($dsn, $options);
+      $client = new sfSentryClient($dsn, $options);
 
       $this->errorHandler = new Raven_ErrorHandler($client);
       $this->errorHandler->registerExceptionHandler();
