@@ -7,8 +7,6 @@ class sfSentryPluginConfiguration extends sfPluginConfiguration
 {
     const CONFIG_PATH = 'config/sentry.yml';
 
-    protected $errorHandler;
-
     /**
      * Initializes the plugin.
      *
@@ -19,29 +17,27 @@ class sfSentryPluginConfiguration extends sfPluginConfiguration
         if ($this->configuration instanceof sfApplicationConfiguration) {
             require $this->configuration->getConfigCache()->checkConfig(self::CONFIG_PATH);
 
-            $dsn = sfConfig::get('sentry_client_dsn', sfConfig::get('sentry_dsn')); // Keep BC
+            $dsn = sfConfig::get('sentry_client_dsn');
             $options = sfConfig::get('sentry_client_options', array());
-            if (!$dsn) {
-                return;
-            }
 
-            $client = new sfSentryClient($dsn, $options);
-
-            $this->errorHandler = new Raven_ErrorHandler($client);
-            $this->errorHandler->registerExceptionHandler();
-            $this->errorHandler->registerErrorHandler(true, E_ALL | E_STRICT);
-            $this->errorHandler->registerShutdownFunction(500);
-
+            sfSentry::getInstance()->configure($dsn, $options);
             $this->dispatcher->connect('application.throw_exception', array($this, 'listenToExceptions'));
         }
     }
 
     /**
      * Listener to exceptions
+     *
      * @param sfEvent $event
+     *
+     * @throws Exception
      */
     public function listenToExceptions(sfEvent $event)
     {
-        $this->errorHandler->handleException($event->getSubject());
+        $instance = sfSentry::getInstance();
+        if (false === $instance->getStatus()) {
+            return;
+        }
+        $instance->handleException($event->getSubject());
     }
 }
