@@ -10,6 +10,11 @@
   "license": "MIT",
   "authors": [
     {
+      "name": "Aleksandr Fedotov",
+      "email": "mezonix@gmail.com",
+      "role": "Developer"
+    },
+    {
       "name": "Jerome Macias",
       "email": "jmacias@groupe-exp.com",
       "role": "Developer"
@@ -17,11 +22,6 @@
     {
       "name": "Jerome Tamarelle",
       "email": "jtamarelle@groupe-exp.com",
-      "role": "Developer"
-    },
-    {
-      "name": "Aleksandr Fedotov",
-      "email": "mezonix@gmail.com",
       "role": "Developer"
     }
   ],
