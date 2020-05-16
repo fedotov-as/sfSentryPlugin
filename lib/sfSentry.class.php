@@ -11,7 +11,6 @@ class sfSentry
     const INFO = Raven_Client::INFO;
     const WARN = Raven_Client::WARN;
     const ERROR = Raven_Client::ERROR;
-    const FATAL = Raven_Client::FATAL;
 
     /**
      * @var sfSentry
@@ -106,7 +105,7 @@ class sfSentry
      * @param string $level   Log level group
      * @param mixed  $vars    User variables
      */
-    public function captureMessage($message, $params = array(), $level = self::ERROR, $vars = null)
+    public function captureMessage($message, $params = array(), $level = self::INFO, $vars = null)
     {
         if (false === $this->getStatus()) {
             return;
@@ -117,8 +116,8 @@ class sfSentry
     /**
      * Log an exception to sentry
      *
-     * @param Exception $exception The Throwable/Exception object.
-     * @param mixed     $vars      Log level group
+     * @param Exception $exception The Throwable/Exception object
+     * @param mixed     $vars      User variables
      */
     public function captureException($exception, $vars = null)
     {
