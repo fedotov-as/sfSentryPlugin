@@ -100,17 +100,18 @@ class sfSentry
     /**
      * Log a message to sentry
      *
-     * @param string $message The message (primary description) for the event.
-     * @param array  $params  Params to use when formatting the message.
-     * @param string $level   Log level group
-     * @param mixed  $vars    User variables
+     * @param string     $message The message (primary description) for the event.
+     * @param array      $params  Params to use when formatting the message.
+     * @param string     $level   Log level group
+     * @param bool|array $stack   Stack trace
+     * @param mixed      $vars    User variables
      */
-    public function captureMessage($message, $params = array(), $level = self::INFO, $vars = null)
+    public function captureMessage($message, $params = array(), $level = self::INFO, $stack = false, $vars = null)
     {
         if (false === $this->getStatus()) {
             return;
         }
-        $this->client->captureMessage($message, $params, $level, false, $vars);
+        $this->client->captureMessage($message, $params, $level, $stack, $vars);
     }
 
     /**

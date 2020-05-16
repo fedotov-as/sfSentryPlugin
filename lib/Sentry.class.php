@@ -8,6 +8,23 @@
 final class Sentry
 {
     /**
+     * Generates a backtrace
+     * @return array
+     */
+    private static function getMessageStack()
+    {
+        $stack = debug_backtrace();
+
+        // remove the Sentry::getStack() call from the trace
+        array_shift($stack);
+
+        // remove the Sentry::sendMessage() call from the trace
+        array_shift($stack);
+
+        return $stack;
+    }
+
+    /**
      * Sending message to Sentry
      *
      * @param string $message Message text
@@ -16,7 +33,7 @@ final class Sentry
      */
     private static function sendMessage($message, $level, $vars = null)
     {
-        sfSentry::getInstance()->captureMessage($message, array(), $level, $vars);
+        sfSentry::getInstance()->captureMessage($message, array(), $level, self::getMessageStack(), $vars);
     }
 
     /**
