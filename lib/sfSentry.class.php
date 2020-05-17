@@ -46,6 +46,8 @@ class sfSentry
     }
 
     /**
+     * Getting Sentry status
+     *
      * @return bool
      */
     public function getStatus()
@@ -54,6 +56,28 @@ class sfSentry
     }
 
     /**
+     * Sentry is enabled
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->getStatus();
+    }
+
+    /**
+     * Sentry is disabled
+     *
+     * @return bool
+     */
+    public function isDisabled()
+    {
+        return !$this->getStatus();
+    }
+
+    /**
+     * Setting Sentry status
+     *
      * @param bool $status
      */
     private function setStatus($status)
@@ -84,17 +108,17 @@ class sfSentry
     /**
      * Handler Exception
      *
-     * @param Exception $e
-     * @param array     $vars
+     * @param Exception $exception The Throwable/Exception object.
+     * @param array     $vars      User variables.
      *
      * @throws Exception
      */
-    public function handleException($e, $vars = null)
+    public function handleException($exception, $vars = null)
     {
-        if (false === $this->getStatus()) {
+        if ($this->isDisabled()) {
             return;
         }
-        $this->errorHandler->handleException($e, false, $vars);
+        $this->errorHandler->handleException($exception, false, $vars);
     }
 
     /**
@@ -102,29 +126,30 @@ class sfSentry
      *
      * @param string     $message The message (primary description) for the event.
      * @param array      $params  Params to use when formatting the message.
-     * @param string     $level   Log level group
-     * @param bool|array $stack   Stack trace
-     * @param mixed      $vars    User variables
+     * @param array      $data    Additional attributes to pass with this event (see Sentry docs).
+     * @param bool|array $stack   Stack trace.
+     * @param mixed      $vars    User variables.
      */
-    public function captureMessage($message, $params = array(), $level = self::INFO, $stack = false, $vars = null)
+    public function captureMessage($message, $params = array(), $data = array(), $stack = false, $vars = null)
     {
-        if (false === $this->getStatus()) {
+        if ($this->isDisabled()) {
             return;
         }
-        $this->client->captureMessage($message, $params, $level, $stack, $vars);
+        $this->client->captureMessage($message, $params, $data, $stack, $vars);
     }
 
     /**
      * Log an exception to sentry
      *
-     * @param Exception $exception The Throwable/Exception object
-     * @param mixed     $vars      User variables
+     * @param Exception $exception The Throwable/Exception object.
+     * @param array     $data      Additional attributes to pass with this event (see Sentry docs).
+     * @param mixed     $vars      User variables.
      */
-    public function captureException($exception, $vars = null)
+    public function captureException($exception, $data = array(), $vars = null)
     {
-        if (false === $this->getStatus()) {
+        if ($this->isDisabled()) {
             return;
         }
-        $this->client->captureException($exception, null, null, $vars);
+        $this->client->captureException($exception, $data, null, $vars);
     }
 }
