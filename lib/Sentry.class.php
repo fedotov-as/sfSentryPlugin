@@ -9,6 +9,7 @@ final class Sentry
 {
     /**
      * Generates a backtrace
+     *
      * @return array
      */
     private static function getMessageStack()
@@ -33,7 +34,11 @@ final class Sentry
      */
     private static function sendMessage($message, $level, $vars = null)
     {
-        sfSentry::getInstance()->captureMessage($message, array(), $level, self::getMessageStack(), $vars);
+        if (sfSentry::getInstance()->isDisabled()) {
+            return;
+        }
+        $data = array('level' => $level);
+        sfSentry::getInstance()->captureMessage($message, array(), $data, self::getMessageStack(), $vars);
     }
 
     /**
@@ -88,6 +93,9 @@ final class Sentry
      */
     public static function sendException($exception, $vars = null)
     {
-        sfSentry::getInstance()->captureException($exception, $vars);
+        if (sfSentry::getInstance()->isDisabled()) {
+            return;
+        }
+        sfSentry::getInstance()->captureException($exception, array(), $vars);
     }
 }

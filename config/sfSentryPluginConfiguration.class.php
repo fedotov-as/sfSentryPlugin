@@ -34,10 +34,8 @@ class sfSentryPluginConfiguration extends sfPluginConfiguration
      */
     public function listenToExceptions(sfEvent $event)
     {
-        $instance = sfSentry::getInstance();
-        if (false === $instance->getStatus()) {
-            return;
+        if (sfSentry::getInstance()->isEnabled()) {
+            sfSentry::getInstance()->handleException($event->getSubject());
         }
-        $instance->handleException($event->getSubject());
     }
 }
