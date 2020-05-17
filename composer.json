@@ -1,32 +1,32 @@
 {
-  "name": "mezonix/sf-sentry-plugin",
-  "description": "Symfony 1.x plugin for Sentry",
-  "keywords": [
-    "symfony1",
-    "logger",
-    "sentry"
-  ],
-  "type": "symfony1-plugin",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Aleksandr Fedotov",
-      "email": "mezonix@gmail.com",
-      "role": "Developer"
-    },
-    {
-      "name": "Jerome Macias",
-      "email": "jmacias@groupe-exp.com",
-      "role": "Developer"
-    },
-    {
-      "name": "Jerome Tamarelle",
-      "email": "jtamarelle@groupe-exp.com",
-      "role": "Developer"
+    "name": "mezonix/sf-sentry-plugin",
+    "description": "Symfony 1.x plugin for Sentry",
+    "keywords": [
+        "symfony1",
+        "logger",
+        "sentry"
+    ],
+    "type": "symfony1-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aleksandr Fedotov",
+            "email": "mezonix@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Jerome Macias",
+            "email": "jmacias@groupe-exp.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Jerome Tamarelle",
+            "email": "jtamarelle@groupe-exp.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.9",
+        "sentry/sentry": "^1.11"
     }
-  ],
-  "require": {
-    "composer/installers": "^1.9",
-    "sentry/sentry": "^1.11"
-  }
 }
