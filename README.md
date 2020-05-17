@@ -7,11 +7,14 @@
 
 Enable remote logging to [Sentry](https://getsentry.com/welcome/) into Symfony1 applications.
 
-The plugin can log events:
+Listens to events:
 * Fatal errors (syntax error, out of memory)
 * Warnings (undefined variable, headers sent, deprecated)
 * Exceptions
-* User messages
+
+Support for sending custom events:
+* Exceptions
+* Messages with any error level
 
 ## Requirements
 
