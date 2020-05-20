@@ -7,6 +7,7 @@ class sfSentryClient extends Raven_Client
 {
     /**
      * Getting user data
+     *
      * @return array
      * @throws sfException
      */
@@ -27,13 +28,14 @@ class sfSentryClient extends Raven_Client
         return array(
             'user' => array(
                 'is_authenticated' => $authenticated,
-                'username' => $username,
+                'username'         => $username,
             )
         );
     }
 
     /**
      * Setting user data
+     *
      * @return array
      * @throws sfException
      */
