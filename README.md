@@ -1,10 +1,8 @@
 # sfSentryPlugin
 
-[![Total Downloads](https://img.shields.io/packagist/dt/mezonix/sf-sentry-plugin.svg?style=flat-square)](https://packagist.org/packages/mezonix/sf-sentry-plugin)
-[![Months Downloads](https://img.shields.io/packagist/dm/mezonix/sf-sentry-plugin.svg?style=flat-square)](https://packagist.org/packages/mezonix/sf-sentry-plugin)
-[![Latest Stable Version](https://img.shields.io/packagist/v/mezonix/sf-sentry-plugin.svg?style=flat-square)](https://packagist.org/packages/mezonix/sf-sentry-plugin)
-[![License](https://img.shields.io/packagist/l/mezonix/sf-sentry-plugin.svg?style=flat-square)](https://packagist.org/packages/mezonix/sf-sentry-plugin)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffedotov-as%2FsfSentryPlugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffedotov-as%2FsfSentryPlugin?ref=badge_shield)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/mezonix/sf-sentry-plugin)](https://packagist.org/packages/mezonix/sf-sentry-plugin)
+[![Latest Stable Version](https://img.shields.io/packagist/v/mezonix/sf-sentry-plugin)](https://packagist.org/packages/mezonix/sf-sentry-plugin)
+[![License](https://img.shields.io/packagist/l/mezonix/sf-sentry-plugin)](https://packagist.org/packages/mezonix/sf-sentry-plugin)
 
 Enable remote logging to [Sentry](https://getsentry.com/welcome/) into Symfony1 applications.
 
